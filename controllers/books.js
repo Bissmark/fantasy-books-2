@@ -1,11 +1,28 @@
 const Book = require('../models/book');
 
-async function index(req, res) {
+const index = async(req, res) => {
     const books = await Book.find({});
-    res.render('books/index', books);
+    console.log(books);
+    res.render('books/index', {books});
+}
+
+const newBook = (req, res) => {
+    res.render('books/new', {errorMsg: ''});
+}
+
+const create = async(req, res) => {
+    try {
+        await Book.create(req.body);
+        res.redirect(`/books`);
+    } catch (err) {
+        console.log(err);
+        res.render('books/new', { errorMsg: err.message });
+    }
 }
 
 module.exports = {
-    index
+    index,
+    new: newBook,
+    create
 }
 

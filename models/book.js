@@ -5,6 +5,16 @@ const bookSchema = new Schema({
     title: {
         type: String,
         required: true
+    },
+    releaseYear: {
+        type: Number
+    },
+    author: {
+        type: String
+    },
+    genre: {
+        type: String,
+        enum: ['fantasy', 'action', 'crime', 'romance']
     }
 })
 
