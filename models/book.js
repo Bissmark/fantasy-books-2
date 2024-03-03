@@ -15,6 +15,9 @@ const bookSchema = new Schema({
     genre: {
         type: String,
         enum: ['fantasy', 'action', 'crime', 'romance']
+    },
+    description: {
+        type: String
     }
 })
 

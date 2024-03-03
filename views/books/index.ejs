@@ -2,8 +2,7 @@
 
 All Books
 
-<img src="/images/Starman.jpg" alt="">
-
+<% if (books.length) { %>
 <table>
     <thead>
         <tr>
@@ -11,6 +10,7 @@ All Books
             <th>Author</th>
             <th>Release Year</th>
             <th>Genre</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
@@ -20,9 +20,12 @@ All Books
                 <td><%= b.author %></td>
                 <td><%= b.releaseYear %></td>
                 <td><%= b.genre %></td>
+                <td><%= b.description %></td>
+                <td><a href="/books/<%= b._id %>">Details</a></td>
             </tr>
         <% }); %>
     </tbody>
 </table>
+<% } %>
 
 <%- include('../partials/footer') %>

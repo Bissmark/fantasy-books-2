@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<form action="/books/<%= book._id %>?_method=PUT" method="POST">
+        <label>Title:</label>
+        <input type="text" name="title" value="<%= book.title %>" required>
+    
+        <label>Author:</label>
+        <input type="text" name="author" value="<%= book.author %>">
+    
+        <label>Release Year:</label>
+        <input type="number" name="releaseYear" value="<%= book.releaseYear %>">
+    
+        <label>Genre:</label>
+        <select name="genre">
+            <option value="fantasy" <%= book.genre === 'fantasy' ? 'selected' : '' %>>Fantasy</option>
+            <option value="action" <%= book.genre === 'action' ? 'selected' : '' %>>Action</option>
+            <option value="crime" <%= book.genre === 'crime' ? 'selected' : '' %>>Crime</option>
+            <option value="romance" <%= book.genre === 'romance' ? 'selected' : '' %>>Romance</option>
+        </select>
+    
+        <label>Description</label>
+        <textarea name="description" required><%= book.description %></textarea>
+        <button type="submit">Update Book</button>
+</form>
+
+<%- include('../partials/footer') %>
