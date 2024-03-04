@@ -2,12 +2,19 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/user');
 
+let callbackURL;
+if (process.env.NODE_ENV === 'production') {
+  callbackURL = process.env.GOOGLE_CALLBACK_HEROKU;
+} else {
+  callbackURL = process.env.GOOGLE_CALLBACK;
+}
+
 passport.use(new GoogleStrategy(
   // Configuration object
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK
+    callbackURL: callbackURL
   },
   // The verify callback function...
   // Marking a function as an async function allows us
