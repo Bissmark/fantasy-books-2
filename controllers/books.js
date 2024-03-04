@@ -3,6 +3,7 @@ const cloudinary = require('../utilities/cloudinary');
 
 const index = async(req, res) => {
     const books = await Book.find({});
+    console.log(index);
     res.render('books/index', {books});
 }
 
