@@ -5,11 +5,12 @@
     <input type="text" name="title" required>
 
     <label>Select Books that you have read: </label>
-    <select name="books">
-        <% books.forEach(book => { %>
-            <option value="<%= book._id %>"><%= book.title %></option>
-        <% }) %>
-    </select>
+    <% books.forEach(book => { %>
+        <div>
+            <input type="checkbox" name="title" value="<%= book._id %>">
+            <label><%= book.title %></label>
+        </div>
+    <% }) %>
 
     <button type="submit">Create List</button>
 

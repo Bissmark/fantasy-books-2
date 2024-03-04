@@ -8,6 +8,8 @@ const index = async(req, res) => {
 
 const show = async(req, res) => {
     const list = await List.findById(req.params.id).populate('booksToRead booksHaveRead');
+    console.log(list);
+    //const books = await Book.find({});
     res.render('lists/show', {title: list.title, list});
 }
 
@@ -19,6 +21,11 @@ const newListHaveRead = async(req, res) => {
 const newListToRead = async(req, res) => {
     const books = await Book.find({});
     res.render('lists/newBooksToRead', { title: 'Want to Read', books, errorMsg: ''});
+}
+
+const newList = async(req, res) => {
+    const books = await Book.find({});
+    res.render('lists/new', { title: 'New List', books, errorMsg: ''});
 }
 
 const create = async(req, res) => {
@@ -34,6 +41,7 @@ module.exports = {
     index,
     show,
     create,
+    new: newList,
     newBooksHaveRead: newListHaveRead,
     newBooksToRead: newListToRead
 }

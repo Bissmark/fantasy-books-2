@@ -20,6 +20,9 @@
     
         <label>Description</label>
         <textarea name="description" required><%= book.description %></textarea>
+
+        <label>Have you read it?:</label>
+        <input type="checkbox" name="haveRead" <%= book.haveRead ? 'checked' : '' %>>
         <button type="submit">Update Book</button>
 </form>
 

@@ -4,6 +4,7 @@ const listsController = require('../controllers/lists');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 router.get('/', listsController.index);
+router.get('/new', ensureLoggedIn, listsController.new);
 router.get('/new/bookstoread', ensureLoggedIn, listsController.newBooksToRead);
 router.get('/new/bookshaveread', ensureLoggedIn, listsController.newBooksHaveRead);
 router.get('/:id', listsController.show);

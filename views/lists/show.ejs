@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<section>
+    <div>Title: </div>
+    <h1><%= list.title %></h1>
+
+    <div>Books: </div>
+    <ul>
+        <% list.books.forEach(function(book) { %>
+            <li>
+                <a href="/books/<%= book._id %>"><%= book.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+    <a href="/lists/<%= list._id %>/edit">Edit List</a>
+    <form action="/lists/<%= list._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete List</button>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>

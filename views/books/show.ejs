@@ -16,8 +16,12 @@
     <div>Release Year: </div>
     <p><%= book.releaseYear %></p>
 
+    <div>Read it: </div>
+    <p><%= book.haveRead ? 'Yes' : 'No' %></p>
+
     <img src="<%= book.image %>" alt="Image of a great book">
 </section>
+
 <a href="/books/<%= book._id %>/edit">Edit Book</a>
 <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
     <button type="submit">Delete Book</button>

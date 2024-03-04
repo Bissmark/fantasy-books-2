@@ -41,7 +41,8 @@ const bookSchema = new Schema({
         type: String
     },
     haveRead: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     image: {
         type: String

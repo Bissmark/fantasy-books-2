@@ -8,16 +8,14 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
         <a href="/books">All Books</a>
+        <a href="/lists">All Lists</a>
         <% if (user) { %>
             <a href="/books/new">Add a Book</a>
-            <a href="/lists/new/bookshaveread">Add a List of Books that you have Read</a>
-            <a href="/lists/new/bookstoread">Add a List of Books that you want to Read</a>
+            <a href="/lists/new">Add a List</a>
             <a href="/logout">Log Out</a>
         <% } else { %>
             <a href="/auth/google" class="login">LOG IN&nbsp;</a>
         <% } %>
     </nav>
     <main>
-        <h1>Great Books I like to read</h1>

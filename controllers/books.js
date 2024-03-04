@@ -9,16 +9,16 @@ const index = async(req, res) => {
 
 const show = async(req, res) => {
     const book = await Book.findById(req.params.id);
-    res.render('books/show', { title: book.name, book });
+    res.render('books/show', { title: book.title, book });
 }
 
 const edit = async(req, res) => {
     const book = await Book.findById(req.params.id);
-    res.render('books/edit', {book});
+    res.render('books/edit', {title: 'Edit Book', book});
 }
 
 const newBook = (req, res) => {
-    res.render('books/new', {errorMsg: ''});
+    res.render('books/new', {title: 'New Book', errorMsg: ''});
 }
 
 const update = async(req, res) => {
@@ -27,6 +27,8 @@ const update = async(req, res) => {
 }
 
 const create = async(req, res) => {
+    // convert haveRead's checkbox of nothing or "on" to boolean
+    req.body.haveRead = !!req.body.haveRead;
     try {
         const result = await cloudinary.uploader.upload(req.file.path);
         console.log(result);
@@ -39,7 +41,7 @@ const create = async(req, res) => {
         res.redirect(`/books/${book._id}`);
     } catch (err) {
         console.log(err);
-        res.render('books/new', { errorMsg: err.message });
+        res.render('books/new', { title: 'New Book', errorMsg: err.message });
     }
 }
 

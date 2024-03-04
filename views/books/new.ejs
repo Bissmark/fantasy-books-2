@@ -8,7 +8,7 @@
     <input type="text" name="author">
 
     <label>Release Year:</label>
-    <input type="text" name="releaseYear">
+    <input type="number" name="releaseYear">
 
     <label>Genre:</label>
     <select name="genre">
@@ -17,9 +17,16 @@
         <option value="crime">Crime</option>
         <option value="romance">Romance</option>
     </select>
-    <label>Description</label>
+
+    <label>Description:</label>
     <textarea name="description" required></textarea>
+
+    <label>Have you read it?:</label>
+    <input type="checkbox" name="haveRead">
+
+    <label>Image:</label>
     <input type="file" name="image">
+
     <button type="submit">Add Book</button>
 </form>
 
