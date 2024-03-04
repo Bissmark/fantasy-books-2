@@ -12,6 +12,8 @@
         <a href="/books">All Books</a>
         <% if (user) { %>
             <a href="/books/new">Add a Book</a>
+            <a href="/lists/new/bookshaveread">Add a List of Books that you have Read</a>
+            <a href="/lists/new/bookstoread">Add a List of Books that you want to Read</a>
             <a href="/logout">Log Out</a>
         <% } else { %>
             <a href="/auth/google" class="login">LOG IN&nbsp;</a>

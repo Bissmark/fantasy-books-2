@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<form action="/lists" method="POST">
+    <label>List Title:</label>
+    <input type="text" name="title" required>
+
+    <label>Select Books that you have read: </label>
+    <select name="books">
+        <% books.forEach(book => { %>
+            <option value="<%= book._id %>"><%= book.title %></option>
+        <% }) %>
+    </select>
+
+    <button type="submit">Create List</button>
+
+<%- include('../partials/footer') %>

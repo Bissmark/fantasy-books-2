@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<h1>All Lists</h1>
+
+<% if (lists.length) { %>
+    <ul>
+        <% lists.forEach(function(l) { %>
+            <li>
+                <a href="/lists/<%= l._id %>"><%= l.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+<% } %>
+
+
+<%- include('../partials/footer') %>
