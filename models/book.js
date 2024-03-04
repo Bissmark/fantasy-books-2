@@ -18,6 +18,12 @@ const bookSchema = new Schema({
     },
     description: {
         type: String
+    },
+    image: {
+        type: String
+    },
+    cloudinary_id: {
+        type: String
     }
 })
 

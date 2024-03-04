@@ -1,4 +1,5 @@
 const Book = require('../models/book');
+const cloudinary = require('../utilities/cloudinary');
 
 const index = async(req, res) => {
     const books = await Book.find({});
@@ -20,14 +21,22 @@ const newBook = (req, res) => {
 }
 
 const update = async(req, res) => {
-        await Book.findByIdAndUpdate(req.params.id, req.body);
-        res.redirect(`/books/${req.params.id}`);
+    await Book.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect(`/books/${req.params.id}`);
 }
 
 const create = async(req, res) => {
     try {
-        await Book.create(req.body);
-        res.redirect(`/books`);
+        const result = await cloudinary.uploader.upload(req.file.path);
+        console.log(result);
+        //await Book.create(req.body);
+        const book = new Book({
+            ...req.body,
+            image: result.secure_url,
+            cloudinary_id: result.public_id
+        })
+        await book.save();
+        res.redirect(`/books/${book._id}`);
     } catch (err) {
         console.log(err);
         res.render('books/new', { errorMsg: err.message });

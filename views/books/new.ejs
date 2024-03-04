@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<form action="/books" method="POST">
+<form action="/books" enctype="multipart/form-data" method="POST">
     <label>Title:</label>
     <input type="text" name="title" required>
 
@@ -19,6 +19,7 @@
     </select>
     <label>Description</label>
     <textarea name="description" required></textarea>
+    <input type="file" name="image">
     <button type="submit">Add Book</button>
 </form>
 
