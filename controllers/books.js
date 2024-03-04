@@ -9,7 +9,7 @@ const index = async(req, res) => {
 
 const show = async(req, res) => {
     const book = await Book.findById(req.params.id);
-    res.render('books/show', {book});
+    res.render('books/show', { title: book.name, book });
 }
 
 const edit = async(req, res) => {
@@ -30,7 +30,6 @@ const create = async(req, res) => {
     try {
         const result = await cloudinary.uploader.upload(req.file.path);
         console.log(result);
-        //await Book.create(req.body);
         const book = new Book({
             ...req.body,
             image: result.secure_url,

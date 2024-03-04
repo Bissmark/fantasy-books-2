@@ -1,14 +1,76 @@
 <%- include('../partials/header') %>
 
-<h1><%= book.title %></h1>
-<p><%= book.author %></p>
-<p><%= book.description %></p>
-<p><%= book.genre %></p>
-<p><%= book.releaseYear %></p>
-<img src="<%= book.image %>" alt="Image of a great book">
+<section>
+    <div>Title: </div>
+    <h1><%= book.title %></h1>
+
+    <div>Author: </div>
+    <p><%= book.author %></p>
+
+    <div>Description: </div>
+    <p><%= book.description %></p>
+
+    <div>Genre: </div>
+    <p><%= book.genre %></p>
+
+    <div>Release Year: </div>
+    <p><%= book.releaseYear %></p>
+
+    <img src="<%= book.image %>" alt="Image of a great book">
+</section>
 <a href="/books/<%= book._id %>/edit">Edit Book</a>
 <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
     <button type="submit">Delete Book</button>
 </form>
+
+<h2>Reviews</h2>
+
+<% if (user) { %>
+    <form action="/books/<%= book._id %>/reviews" method="POST">
+        <label>Review: </label>
+        <input type="text" name="content" placeholder="Review Content">
+
+        <label>Rating: </label>
+        <select name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <input type="submit" value="Add Review">
+    </form>
+<% } %>
+
+<% if (book.reviews.length) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Review</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% book.reviews.forEach(function(r) { %>
+                <tr>
+                    <td><%= r.content %></td>
+                    <td><%= r.rating %></td>
+                    <td>
+                        <% if (user?._id.equals(r.user)) { %>
+                            <a href="/books/<%= book._id %>/reviews/<%= r._id %>/edit">Edit Review</a>
+                            <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Delete Review</button>
+                            </form>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>No reviews yet. Be the first to review this book!</p>
+<% } %>
 
 <%- include('../partials/footer') %>
