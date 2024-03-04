@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+
+<h1>Read Books</h1>
+<ul>
+    <% books.forEach(book => { %>
+        <li><%= book.title %></li>
+    <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>

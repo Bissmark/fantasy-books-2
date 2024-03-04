@@ -1,4 +1,5 @@
 const Book = require('../models/book');
+const ReadBook = require('../models/readBook');
 const cloudinary = require('../utilities/cloudinary');
 
 const index = async(req, res) => {
@@ -22,6 +23,8 @@ const newBook = (req, res) => {
 }
 
 const update = async(req, res) => {
+    // convert haveRead's checkbox of nothing or "on" to boolean
+    req.body.haveRead = !!req.body.haveRead;
     await Book.findByIdAndUpdate(req.params.id, req.body);
     res.redirect(`/books/${req.params.id}`);
 }
@@ -50,6 +53,20 @@ const deleteBook = async(req, res) => {
     res.redirect('/books');
 }
 
+const markAsRead = async (req, res) => {
+    try {
+        const newReadBook = new ReadBook({
+            user: req.user._id,
+            book: req.params.id
+        });
+        await newReadBook.save();
+        res.redirect(`/books/${req.params.id}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 module.exports = {
     index,
     show,
@@ -58,5 +75,6 @@ module.exports = {
     edit,
     update,
     delete: deleteBook,
+    markAsRead
 }
 

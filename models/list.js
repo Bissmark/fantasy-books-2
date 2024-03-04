@@ -10,10 +10,6 @@ const listSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Book'
     }],
-    booksHaveRead: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Book'
-    }],
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

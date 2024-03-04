@@ -26,6 +26,9 @@
 <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
     <button type="submit">Delete Book</button>
 </form>
+<form action="/books/<%= book._id %>/read" method="POST">
+    <button>Add Book to Read List</button>
+</form>
 
 <h2>Reviews</h2>
 

@@ -11,5 +11,6 @@ router.post('/', ensureLoggedIn, upload.single('image'), booksController.create)
 router.get('/:id/edit', booksController.edit);
 router.put('/:id', booksController.update);
 router.delete('/:id', booksController.delete);
+router.post('/:id/read', ensureLoggedIn, booksController.markAsRead);
 
 module.exports = router;
