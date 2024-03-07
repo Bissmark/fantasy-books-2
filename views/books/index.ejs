@@ -1,32 +1,48 @@
 <%- include('../partials/header') %>
 
-All Books
+<h1 class="text-center mb-5 mt-5">All Books</h1>
 
 <% if (books.length) { %>
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Release Year</th>
-            <th>Genre</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% books.forEach(function(b) { %>
-            <tr>
-                <td><%= b.title %></td>
-                <td><%= b.author %></td>
-                <td><%= b.releaseYear %></td>
-                <td><%= b.genre %></td>
-                <td><%= b.description %></td>
-                <td><%= b.haveRead %></td>
-                <td><a href="/books/<%= b._id %>">Details</a></td>
-            </tr>
-        <% }); %>
-    </tbody>
-</table>
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-10">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Title</th>
+                    <th scope="col" class="px-6 py-3">Author</th>
+                    <th scope="col" class="px-6 py-3">Release Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(function(b) { %>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= b.title %></td>
+                        <td class="px-6 py-4"><%= b.author %></td>
+                        <td class="px-6 py-4"><%= b.releaseYear %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Genre</th>
+                    <th scope="col" class="px-6 py-3">Description</th>
+                    <th scope="col" class="px-6 py-3">Have Read</th>
+                    <th scope="col" class="px-6 py-3">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(function(b) { %>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4"><%= b.genre %></td>
+                        <td class="px-6 py-4"><%= b.description %></td>
+                        <td class="px-6 py-4"><%= b.haveRead %></td>
+                        <td class="px-6 py-4"><a href="/books/<%= b._id %>" class="text-gray-700 hover:text-blue-500">Details</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 <% } %>
 
 <%- include('../partials/footer') %>

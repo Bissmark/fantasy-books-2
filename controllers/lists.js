@@ -2,12 +2,12 @@ const List = require('../models/list');
 const Book = require('../models/book');
 
 const index = async(req, res) => {
-    const lists = await List.find({user: req.user._id}).populate('booksToRead booksHaveRead');
+    const lists = await List.find({user: req.user._id}).populate('booksToRead');
     res.render('lists/index', {title: 'All Lists', lists});
 }
 
 const show = async(req, res) => {
-    const list = await List.findById(req.params.id).populate('booksToRead booksHaveRead');
+    const list = await List.findById(req.params.id).populate('booksToRead');
     console.log(list);
     //const books = await Book.find({});
     res.render('lists/show', {title: list.title, list});
