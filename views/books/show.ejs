@@ -1,33 +1,47 @@
 <%- include('../partials/header') %>
 
-<section>
-    <div>Title: </div>
-    <h1><%= book.title %></h1>
+<section class="flex flex-col justify-center items-center">
+    <div class="flex flex-col bg-gray-700 w-72">
+        <label class="text-blue-500">
+            Title: 
+            <p class="inline text-gray-500 text-right"><%= book.title %></p>
+        </label>
+    
+        <label class="text-blue-500">
+            Author: 
+            <p class="inline text-gray-500"><%= book.author %></p>
+        </label>
+    
+        <label class="text-blue-500">
+            Description: 
+            <p class="inline text-gray-500"><%= book.description %></p>
+        </label>
+    
+        <label class="text-blue-500">
+            Genre: 
+            <p class="inline text-gray-500"><%= book.genre %></p>
+        </label>
+    
+        <label class="text-blue-500">
+            Release Year: 
+            <p class="inline text-gray-500"><%= book.releaseYear %></p>
+        </label>
+    
+        <label class="text-blue-500">
+            Read it: 
+            <p class="inline text-gray-500"><%= book.haveRead ? 'Yes' : 'No' %></p>
+        </label>
+    </div>
 
-    <div>Author: </div>
-    <p><%= book.author %></p>
-
-    <div>Description: </div>
-    <p><%= book.description %></p>
-
-    <div>Genre: </div>
-    <p><%= book.genre %></p>
-
-    <div>Release Year: </div>
-    <p><%= book.releaseYear %></p>
-
-    <div>Read it: </div>
-    <p><%= book.haveRead ? 'Yes' : 'No' %></p>
-
-    <img src="<%= book.image %>" alt="Image of a great book">
+    <img class="max-w-72" src="<%= book.image %>" alt="Image of a great book">
 </section>
 
-<a href="/books/<%= book._id %>/edit">Edit Book</a>
+<a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/books/<%= book._id %>/edit">Edit Book</a>
 <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete Book</button>
+    <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="submit">Delete Book</button>
 </form>
 <form action="/books/<%= book._id %>/read" method="POST">
-    <button>Add Book to Read List</button>
+    <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Book to Read List</button>
 </form>
 
 <h2>Reviews</h2>
@@ -46,7 +60,7 @@
             <option value="5">5</option>
         </select>
 
-        <input type="submit" value="Add Review">
+        <input class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit" value="Add Review">
     </form>
 <% } %>
 
