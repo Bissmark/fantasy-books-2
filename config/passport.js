@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 let callbackURL;
 if (process.env.NODE_ENV === 'production') {
-  callbackURL = process.env.GOOGLE_CALLBACK_HEROKU;
+  callbackURL = process.env.GOOGLE_CALLBACK_RENDER;
 } else {
   callbackURL = process.env.GOOGLE_CALLBACK;
 }
