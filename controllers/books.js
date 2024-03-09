@@ -3,7 +3,7 @@ const ReadBook = require('../models/readBook');
 const cloudinary = require('../utilities/cloudinary');
 
 const index = async(req, res) => {
-    const books = await Book.find({});
+    const books = await Book.find({}).sort({ createdAt: -1 });
     console.log(index);
     res.render('books/index', {title: 'All Books', books});
 }
