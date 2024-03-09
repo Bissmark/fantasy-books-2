@@ -1,30 +1,45 @@
 <%- include('../partials/header') %>
 
-<form action="/books" enctype="multipart/form-data" method="POST">
-    <label>Title:</label>
-    <input type="text" name="title" required>
-
-    <label>Author:</label>
-    <input type="text" name="author">
-
-    <label>Release Year:</label>
-    <input type="number" name="releaseYear">
-
-    <label>Genre:</label>
-    <select name="genre">
-        <option value="fantasy">Fantasy</option>
-        <option value="action">Action</option>
-        <option value="crime">Crime</option>
-        <option value="romance">Romance</option>
-    </select>
-
-    <label>Description:</label>
-    <textarea name="description" required></textarea>
-
-    <label>Image:</label>
-    <input type="file" name="image">
-
-    <button type="submit">Add Book</button>
-</form>
+<div class="flex items-center justify-center h-[85vh]">
+    <form class="flex flex-col gap-4 bg-gray-800 w-72 px-5 py-2.5" action="/books" enctype="multipart/form-data" method="POST">
+        <div>
+            <label class="text-white">Title:</label>
+            <input type="text" name="title" required>
+        </div>
+    
+        <div>
+            <label class="text-white">Author:</label>
+            <input type="text" name="author">
+        </div>
+    
+        <div>
+            <label class="text-white">Release Year:</label>
+            <input type="number" name="releaseYear">
+        </div>
+    
+        <div>
+            <label class="text-white">Genre:</label>
+            <select name="genre">
+                <option value="Fantasy">Fantasy</option>
+                <option value="Action">Action</option>
+                <option value="Crime">Crime</option>
+                <option value="Romance">Romance</option>
+            </select>
+        </div>
+    
+        <div>
+            <label class="text-white">Description:</label>
+            <textarea name="description" required></textarea>
+        </div>
+        
+    
+        <div>
+            <label class="text-white">Image:</label>
+            <input class="text-white" type="file" name="image">
+        </div>
+    
+        <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit">Add Book</button>
+    </form>
+</div>
 
 <%- include('../partials/footer') %>
