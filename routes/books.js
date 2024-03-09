@@ -5,6 +5,7 @@ const booksController = require('../controllers/books');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 router.get('/', booksController.index);
+router.post('/', booksController.search);
 router.get('/new', ensureLoggedIn, booksController.new);
 router.get('/:id', booksController.show);
 router.post('/', ensureLoggedIn, upload.single('image'), booksController.create);

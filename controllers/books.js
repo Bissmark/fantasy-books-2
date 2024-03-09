@@ -2,10 +2,42 @@ const Book = require('../models/book');
 const ReadBook = require('../models/readBook');
 const cloudinary = require('../utilities/cloudinary');
 
-const index = async(req, res) => {
-    const books = await Book.find({}).sort({ createdAt: -1 });
-    console.log(index);
-    res.render('books/index', {title: 'All Books', books});
+// const index = async(req, res) => {
+//     const books = await Book.find({}).sort({ createdAt: -1 });
+//     res.render('books/index', {title: 'All Books', books});
+// }
+
+// const searchBook = async (req, res) => {
+//     try {
+//         const books = await Book.find({ title: { $regex: new RegExp(req.body.title, 'i') } });
+//         console.log(books);
+//         //res.json({ books }); // Sending JSON response with books data
+//         res.render('books/index', { title: 'Search Results', books });
+//     } catch (error) {
+//         console.error('Error searching books:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// }
+
+const index = async (req, res) => {
+    try {
+        const books = await Book.find({}).sort({ createdAt: -1 });
+        res.render('books/index', { title: 'All Books', books });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+const search = async (req, res) => {
+    try {
+        const { title } = req.body;
+        const books = await Book.find({ title: { $regex: new RegExp(title, 'i') } });
+        res.render('books/index', { title: 'Search Results', books });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 const show = async(req, res) => {
@@ -75,6 +107,7 @@ module.exports = {
     edit,
     update,
     delete: deleteBook,
-    markAsRead
+    markAsRead,
+    search
 }
 
