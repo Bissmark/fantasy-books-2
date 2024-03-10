@@ -1,29 +1,39 @@
 <%- include('../partials/header') %>
 
-<form action="/books/<%= book._id %>?_method=PUT" method="POST">
-        <label>Title:</label>
-        <input type="text" name="title" value="<%= book.title %>" required>
+<div class="flex items-center justify-center h-[80vh]">
+    <form class="flex flex-col gap-4 bg-gray-800 w-72 px-5 py-2.5" action="/books/<%= book._id %>?_method=PUT" method="POST">
+        <div>
+            <label class="text-white">Title:</label>
+            <input class="mt-2" type="text" name="title" value="<%= book.title %>" required>
+        </div>
+        
+        <div>
+            <label class="text-white">Author:</label>
+            <input class="mt-2" type="text" name="author" value="<%= book.author %>">
+        </div>
     
-        <label>Author:</label>
-        <input type="text" name="author" value="<%= book.author %>">
+        <div>
+            <label class="text-white">Release Year:</label>
+            <input type="number" name="releaseYear" value="<%= book.releaseYear %>">
+        </div>
     
-        <label>Release Year:</label>
-        <input type="number" name="releaseYear" value="<%= book.releaseYear %>">
+        <div>
+            <label class="text-white mr-5 block">Genre:</label>
+            <select class="px-3 py-1.5 mt-2" name="genre">
+                <option value="fantasy" <%= book.genre === 'fantasy' ? 'selected' : '' %>>Fantasy</option>
+                <option value="action" <%= book.genre === 'action' ? 'selected' : '' %>>Action</option>
+                <option value="crime" <%= book.genre === 'crime' ? 'selected' : '' %>>Crime</option>
+                <option value="romance" <%= book.genre === 'romance' ? 'selected' : '' %>>Romance</option>
+            </select>
+        </div>
     
-        <label>Genre:</label>
-        <select name="genre">
-            <option value="fantasy" <%= book.genre === 'fantasy' ? 'selected' : '' %>>Fantasy</option>
-            <option value="action" <%= book.genre === 'action' ? 'selected' : '' %>>Action</option>
-            <option value="crime" <%= book.genre === 'crime' ? 'selected' : '' %>>Crime</option>
-            <option value="romance" <%= book.genre === 'romance' ? 'selected' : '' %>>Romance</option>
-        </select>
-    
-        <label>Description</label>
-        <textarea name="description" required><%= book.description %></textarea>
+        <div>
+            <label class="text-white">Description</label>
+            <textarea class="mt-2 px-3 py-1.5" name="description" required><%= book.description %></textarea>
+        </div>
 
-        <label>Have you read it?:</label>
-        <input type="checkbox" name="haveRead" <%= book.haveRead ? 'checked' : '' %>>
-        <button type="submit">Update Book</button>
-</form>
+        <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit">Update Book</button>
+    </form>
+</div>
 
 <%- include('../partials/footer') %>
