@@ -32,7 +32,7 @@
                         </label>
                         <label class="text-blue-500">
                             Have Read:
-                            <p class="inline text-white"><%= b.haveRead %></p>
+                            <p class="inline text-white"><%= b.haveRead ? 'Yes' : 'No' %></p>
                         </label>
                     </div>
                     <div class="flex justify-between items-center mt-2">
@@ -73,32 +73,34 @@
 <% } %>
 
 <script>
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    // Get the input element
+    const searchInput = document.getElementById('searchInput');
 
-    const searchQuery = document.getElementById('searchInput').value.trim();
+    // Add input event listener
+    searchInput.addEventListener('input', function(event) {
+        const searchQuery = event.target.value.trim();
 
-    if (searchQuery !== '') {
-        fetch('/books', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title: searchQuery })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text(); // Assuming the response is HTML
-        })
-        .then(data => {
-            // Update the page content with the search results
-            document.getElementById('booksSection').innerHTML = data;
-        })
-        .catch(error => console.error('Error fetching search results:', error));
-    }
-});
+        if (searchQuery !== '') {
+            fetch('/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title: searchQuery })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Assuming the response is HTML
+            })
+            .then(data => {
+                // Update the page content with the search results
+                document.getElementById('booksSection').innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching search results:', error));
+        }
+    });
 </script>
 
 <%- include('../partials/footer') %>

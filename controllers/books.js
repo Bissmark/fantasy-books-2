@@ -1,23 +1,5 @@
 const Book = require('../models/book');
-const ReadBook = require('../models/readBook');
 const cloudinary = require('../utilities/cloudinary');
-
-// const index = async(req, res) => {
-//     const books = await Book.find({}).sort({ createdAt: -1 });
-//     res.render('books/index', {title: 'All Books', books});
-// }
-
-// const searchBook = async (req, res) => {
-//     try {
-//         const books = await Book.find({ title: { $regex: new RegExp(req.body.title, 'i') } });
-//         console.log(books);
-//         //res.json({ books }); // Sending JSON response with books data
-//         res.render('books/index', { title: 'Search Results', books });
-//     } catch (error) {
-//         console.error('Error searching books:', error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// }
 
 const index = async (req, res) => {
     try {
@@ -55,18 +37,15 @@ const newBook = (req, res) => {
 }
 
 const update = async(req, res) => {
-    // convert haveRead's checkbox of nothing or "on" to boolean
     req.body.haveRead = !!req.body.haveRead;
     await Book.findByIdAndUpdate(req.params.id, req.body);
     res.redirect(`/books/${req.params.id}`);
 }
 
 const create = async(req, res) => {
-    // convert haveRead's checkbox of nothing or "on" to boolean
     req.body.haveRead = !!req.body.haveRead;
     try {
         const result = await cloudinary.uploader.upload(req.file.path);
-        console.log(result);
         const book = new Book({
             ...req.body,
             image: result.secure_url,
@@ -87,17 +66,23 @@ const deleteBook = async(req, res) => {
 
 const markAsRead = async (req, res) => {
     try {
-        const newReadBook = new ReadBook({
-            user: req.user._id,
-            book: req.params.id
-        });
-        await newReadBook.save();
+        await Book.findByIdAndUpdate(req.params.id, { haveRead: true });
         res.redirect(`/books/${req.params.id}`);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+const markAsUnread = async (req, res) => {
+    try {
+        await Book.findByIdAndUpdate(req.params.id, { haveRead: false });
+        res.redirect(`/books/${req.params.id}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
 
 module.exports = {
     index,
@@ -108,6 +93,7 @@ module.exports = {
     update,
     delete: deleteBook,
     markAsRead,
-    search
+    search,
+    markAsUnread
 }
 
