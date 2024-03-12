@@ -9,7 +9,6 @@ const create = async(req, res) => {
     book.reviews.push(req.body);
     try {
         await book.save();
-        console.log(book);
     } catch (err) {
         console.log(err);
     }

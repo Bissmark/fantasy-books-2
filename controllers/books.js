@@ -37,7 +37,7 @@ const newBook = (req, res) => {
 }
 
 const update = async(req, res) => {
-    req.body.haveRead = !!req.body.haveRead;
+    //req.body.haveRead = !!req.body.haveRead;
     await Book.findByIdAndUpdate(req.params.id, req.body);
     res.redirect(`/books/${req.params.id}`);
 }

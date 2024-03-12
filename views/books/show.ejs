@@ -44,13 +44,13 @@
             <% if (!book.haveRead) { %>
                 <div class="leading-10">
                     <form class="leading-10" action="/books/<%= book._id %>/read" method="POST">
-                        <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Book to Read List</button>
+                        <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Book to Have Read List</button>
                     </form>
                 </div>
             <% } else { %>
                 <div class="leading-10">
                     <form class="leading-10" action="/books/<%= book._id %>/unread" method="POST">
-                        <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove Book from Read List</button>
+                        <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove Book from Have Read List</button>
                     </form>
                 </div>
             <% } %>
