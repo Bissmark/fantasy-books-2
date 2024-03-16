@@ -4,11 +4,11 @@
     <% books.forEach(book => { %>
         <% if (book.haveRead) { %>
             <div class="flex flex-row justify-center items-center w-full">
-                <li><a href="/books/<%= book._id %>" class="text-blue-500 underline"><%= book.title %></a></li>
-                <li class="text-white">
+                <li><a href="/books/<%= book._id %>" class="text-blue-500 underline mr-2"><%= book.title %></a></li>
+                <li class="text-white"> - 
                     <% book.reviews.forEach(review => { %>
                         <% for (let i = 0; i < review.rating; i++) { %>
-                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
                         <% } %>
                     <% }) %>
                 </li>

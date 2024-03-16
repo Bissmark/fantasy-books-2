@@ -73,30 +73,32 @@
     const searchInput = document.getElementById('searchInput');
 
     // Add input event listener
-    searchInput.addEventListener('input', function(event) {
-        const searchQuery = event.target.value.trim();
-
-        if (searchQuery !== '') {
-            fetch('/books', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ title: searchQuery })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text(); // Assuming the response is HTML
-            })
-            .then(data => {
-                // Update the page content with the search results
-                document.getElementById('booksSection').innerHTML = data;
-            })
-            .catch(error => console.error('Error fetching search results:', error));
-        }
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', function(event) {
+            const searchQuery = event.target.value.trim();
+    
+            if (searchQuery !== '') {
+                fetch('/books', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title: searchQuery })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text(); // Assuming the response is HTML
+                })
+                .then(data => {
+                    // Update the page content with the search results
+                    document.getElementById('booksSection').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching search results:', error));
+            }
+        });
+    }
 </script>
 
 <%- include('../partials/footer') %>

@@ -35,7 +35,8 @@ const bookSchema = new Schema({
     },
     genre: {
         type: String,
-        enum: ['Fantasy', 'Action', 'Crime', 'Romance']
+        enum: ['Fantasy', 'Action', 'Crime', 'Romance'],
+        default: 'Fantasy'
     },
     description: {
         type: String
