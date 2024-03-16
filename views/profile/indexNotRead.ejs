@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<% genres.forEach(genre => { %>
+    <h2><%= genre %></h2>
+    <ul class="mt-3">
+        <% books.filter(book => book.genre === genre && !book.haveRead).forEach(book => { %>
+            <li>
+                <a href="/books/<%= book._id %>" class="text-blue-500 underline mr-2"><%= book.title %></a>
+                <span class="text-white"> - 
+                    <% book.reviews.forEach(review => { %>
+                        <% for (let i = 0; i < review.rating; i++) { %>
+                            <i class="fa-solid fa-star ml-1"></i>
+                        <% } %>
+                    <% }) %>
+                </span>
+            </li>
+        <% }) %>
+    </ul>
+<% }) %>
+
+<%- include('../partials/footer') %>
