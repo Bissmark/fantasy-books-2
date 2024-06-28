@@ -5,7 +5,7 @@ const indexRead = async(req, res) => {
         const books = await Book.find({}).sort({ createdAt: -1 });
         const genres = ['Fantasy', 'Action', 'Crime', 'Romance'];
         const reviews = books.map(book => book.reviews.map(review => review.rating));
-        res.render('profile/indexRead', {title: 'Books I have Read', books, reviews, genres });
+        res.render('profile/indexRead', {title: 'Books I have Read', activePage: 'read-books', books, reviews, genres });
     } catch (err) {
         console.log(err);
     }
@@ -16,7 +16,7 @@ const indexNotRead = async(req, res) => {
         const books = await Book.find({}).sort({ createdAt: -1 });
         const genres = ['Fantasy', 'Action', 'Crime', 'Romance'];
         const reviews = books.map(book => book.reviews.map(review => review.rating));
-        res.render('profile/indexNotRead', {title: 'Books I have Not Read', books, reviews, genres });
+        res.render('profile/indexNotRead', {title: 'Books I have Not Read', activePage: 'unread-books', books, reviews, genres });
     } catch (err) {
         console.log(err);
     }

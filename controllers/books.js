@@ -4,7 +4,7 @@ const cloudinary = require('../utilities/cloudinary');
 const index = async (req, res) => {
     try {
         const books = await Book.find({}).sort({ createdAt: -1 });
-        res.render('books/index', { title: 'All Books', books });
+        res.render('books/index', { title: 'All Books', activePage: 'all-books', books });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -40,7 +40,7 @@ const edit = async(req, res) => {
 }
 
 const newBook = (req, res) => {
-    res.render('books/new', {title: 'New Book', errorMsg: ''});
+    res.render('books/new', {title: 'New Book', activePage: 'new-book', errorMsg: ''});
 }
 
 const update = async(req, res) => {
