@@ -15,6 +15,13 @@ const search = async (req, res) => {
     try {
         const { title } = req.body;
         const books = await Book.find({ title: { $regex: new RegExp(title, 'i') } });
+        // Check if the request is an AJAX request
+        if (req.headers['x-requested-with'] === 'XMLHttpRequest') {
+            return res.render('books/booksRows', { books }, (err, html) => {
+                res.send(html); // Send the generated HTML back
+            });
+        }
+        // Fallback for non-AJAX requests
         res.render('books/index', { title: 'Search Results', books });
     } catch (error) {
         console.error('Error:', error);
