@@ -2,70 +2,70 @@
 
 <% if (books.length) { %>
     <div class="flex justify-center mt-4 mb-4">
-        <input type="text" id="searchInput" placeholder="Search books...">
+        <input class="md:w-1/4" type="text" id="searchInput" placeholder="Search books...">
     </div>
-<div class="mobile-table" id="booksSection">
-    <div class="flex flex-col flex-wrap justify-center items-center">
-        <% books.forEach(b => { %>
-            <div class="bg-gray-800 text-white flex flex-row mb-5 w-80 justify-between px-5 py-2.5" >
-                <div class="flex flex-col">
-                    <label class="text-blue-500">
-                        Title:
-                        <p class="inline text-white"><%= b.title %></p>
-                    </label>
-                    <label class="text-blue-500">
-                        Author:
-                        <p class="inline text-white"><%= b.author %></p>
-                    </label>
-                    <label class="text-blue-500">
-                        Release Year:
-                        <p class="inline text-white"><%= b.releaseYear %></p>
-                    </label>
-                    <label class="text-blue-500">
-                        Genre:
-                        <p class="inline text-white"><%= b.genre %></p>
-                    </label>
-                    <label class="text-blue-500">
-                        Description:
-                        <p class="inline text-white"><%= b.description %></p>
-                    </label>
+    <div class="mobile-table" id="booksSection">
+        <div class="flex flex-col flex-wrap justify-center items-center">
+            <% books.forEach(b => { %>
+                <div class="bg-gray-800 text-white flex flex-row mb-5 w-80 justify-between px-5 py-2.5" >
+                    <div class="flex flex-col">
+                        <label class="text-blue-500">
+                            Title:
+                            <p class="inline text-white"><%= b.title %></p>
+                        </label>
+                        <label class="text-blue-500">
+                            Author:
+                            <p class="inline text-white"><%= b.author %></p>
+                        </label>
+                        <label class="text-blue-500">
+                            Release Year:
+                            <p class="inline text-white"><%= b.releaseYear %></p>
+                        </label>
+                        <label class="text-blue-500">
+                            Genre:
+                            <p class="inline text-white"><%= b.genre %></p>
+                        </label>
+                        <label class="text-blue-500">
+                            Description:
+                            <p class="inline text-white"><%= b.description %></p>
+                        </label>
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <a href="/books/<%= b._id %>" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5">Details</a>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center mt-2">
-                    <a href="/books/<%= b._id %>" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5">Details</a>
-                </div>
-            </div>
-        <% }) %>
-    </div>
-</div>
-    
-        <div class="flex flex-col justify-center items-center">
-            <table class="desktop-table max-w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-10">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Title</th>
-                        <th scope="col" class="px-6 py-3">Author</th>
-                        <th scope="col" class="px-6 py-3">Release Year</th>
-                        <th scope="col" class="px-6 py-3">Genre</th>
-                        <th scope="col" class="px-6 py-3">Description</th>
-                        <th scope="col" class="px-6 py-3">Have Read</th>
-                        <th scope="col" class="px-6 py-3">Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% books.forEach(function(b) { %>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= b.title %></td>
-                            <td class="px-6 py-4"><%= b.author %></td>
-                            <td class="px-6 py-4"><%= b.releaseYear %></td>
-                            <td class="px-6 py-4"><%= b.genre %></td>
-                            <td class="px-6 py-4"><%= b.description %></td>
-                            <td class="px-6 py-4"><%= b.haveRead %></td>
-                            <td class="px-6 py-4"><a href="/books/<%= b._id %>" class="text-gray-700 hover:text-blue-500">Details</a></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
+            <% }) %>
         </div>
+    </div>
+    
+    <div class="flex flex-col justify-center items-center">
+        <table class="desktop-table max-w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-10">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Title</th>
+                    <th scope="col" class="px-6 py-3">Author</th>
+                    <th scope="col" class="px-6 py-3">Release Year</th>
+                    <th scope="col" class="px-6 py-3">Genre</th>
+                    <th scope="col" class="px-6 py-3">Description</th>
+                    <th scope="col" class="px-6 py-3">Have Read</th>
+                    <th scope="col" class="px-6 py-3">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(function(b) { %>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= b.title %></td>
+                        <td class="px-6 py-4"><%= b.author %></td>
+                        <td class="px-6 py-4"><%= b.releaseYear %></td>
+                        <td class="px-6 py-4"><%= b.genre %></td>
+                        <td class="px-6 py-4"><%= b.description %></td>
+                        <td class="px-6 py-4"><%= b.haveRead %></td>
+                        <td class="px-6 py-4"><a href="/books/<%= b._id %>" class="text-white hover:text-blue-500">More Info</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 <% } %>
 
 <div id="booksDisplay"></div>
