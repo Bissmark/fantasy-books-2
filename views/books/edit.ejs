@@ -1,25 +1,25 @@
 <%- include('../partials/header') %>
 
-<div class="flex items-center justify-center h-[80vh]">
+<div class="flex items-center justify-center h-[80vh] md:h-screen">
     <form class="flex flex-col gap-4 bg-gray-800 w-72 px-5 py-2.5" action="/books/<%= book._id %>?_method=PUT" method="POST">
         <div>
             <label class="text-white">Title:</label>
-            <input class="mt-2" type="text" name="title" value="<%= book.title %>" required>
+            <input class="mt-2 w-60" type="text" name="title" value="<%= book.title %>" required>
         </div>
         
         <div>
             <label class="text-white">Author:</label>
-            <input class="mt-2" type="text" name="author" value="<%= book.author %>">
+            <input class="mt-2 w-60" type="text" name="author" value="<%= book.author %>">
         </div>
     
         <div>
             <label class="text-white">Release Year:</label>
-            <input type="number" name="releaseYear" value="<%= book.releaseYear %>">
+            <input class="mt-2 w-60" type="number" name="releaseYear" value="<%= book.releaseYear %>">
         </div>
     
         <div>
             <label class="text-white mr-5 block">Genre:</label>
-            <select class="px-3 py-1.5 mt-2" name="genre">
+            <select class="px-3 py-1.5 mt-2 w-60" name="genre">
                 <option value="fantasy" <%= book.genre === 'fantasy' ? 'selected' : '' %>>Fantasy</option>
                 <option value="action" <%= book.genre === 'action' ? 'selected' : '' %>>Action</option>
                 <option value="crime" <%= book.genre === 'crime' ? 'selected' : '' %>>Crime</option>
@@ -29,7 +29,7 @@
     
         <div>
             <label class="text-white">Description</label>
-            <textarea class="mt-2 px-3 py-1.5" name="description" required><%= book.description %></textarea>
+            <textarea class="mt-2 px-3 py-1.5 w-60" name="description" required><%= book.description %></textarea>
         </div>
 
         <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit">Update Book</button>
